@@ -1782,6 +1782,12 @@ def cumprod(data, axis=None, dtype=None, exclusive=None):
     """
     return _make.cumprod(data, axis, dtype, exclusive)
 
+def addtwo(data, axis=None, dtype=None, exclusive=None):
+    """
+    Adds two
+    """
+    return _make.addtwo(data, axis, dtype, exclusive)
+
 
 def unique(data, is_sorted=True, return_counts=False):
     """Find the unique elements of a 1-D tensor. Please note `output` and `counts` are all padded to

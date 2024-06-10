@@ -1837,7 +1837,7 @@ def test_adv_index(target, dev, executor_kind):
 
 
 # Helper for testing binop functions
-scanops_supported = {"cumsum": relay.op.cumsum, "cumprod": relay.op.cumprod}
+scanops_supported = {"cumsum": relay.op.cumsum, "cumprod": relay.op.cumprod, "addtwo": relay.op.addtwo}
 
 
 def run_binop_tests(
@@ -1915,6 +1915,12 @@ def test_cumsum(target, dev, executor_kind):
 def test_cumprod(target, dev, executor_kind):
     run_binop_tests(
         target, dev, executor_kind, binop_type="cumprod", gt_func=np.cumprod, identity_value=1
+    )
+
+@tvm.testing.parametrize_targets
+def test_cumprod(target, dev, executor_kind):
+    run_binop_tests(
+        target, dev, executor_kind, binop_type="addtwo", gt_func=np.cumsum, identity_value=2
     )
 
 

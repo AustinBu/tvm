@@ -238,6 +238,14 @@ def compute_cumprod(attrs, inputs, output_type):
 _reg.register_strategy("cumprod", strategy.cumprod_strategy)
 _reg.register_shape_func("cumprod", False, elemwise_shape_func)
 
+# addtwo
+@_reg.register_compute("addtwo")
+def compute_addtwo(attrs, inputs, output_type):
+    """Compute definition of addtwo"""
+    return [topi.addtwo(inputs[0], attrs.axis, attrs.dtype, attrs.exclusive)]
+
+_reg.register_strategy("addtwo", strategy.addtwo_strategy)
+_reg.register_shape_func("addtwo", False, elemwise_shape_func)
 
 @_reg.register_compute("unique")
 def compute_unique(attrs, inputs, output_type):

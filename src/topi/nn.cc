@@ -26,7 +26,7 @@
 #include <tvm/topi/nn.h>
 #include <tvm/topi/nn/bias_add.h>
 #include <tvm/topi/nn/bnn.h>
-#include <tvm/topi/nn/dense.h>
+#include <tvm/topi/nn/dense.h>  
 #include <tvm/topi/nn/dilate.h>
 #include <tvm/topi/nn/flatten.h>
 #include <tvm/topi/nn/group_norm.h>

@@ -234,3 +234,22 @@ def cumprod(
         dtype=dtype,
         exclusive=exclusive,
     )
+
+def addtwo(
+    data: tvm.te.Tensor,
+    axis: Optional[int] = None,
+    dtype: Optional[str] = None,
+    exclusive: Optional[bool] = None,
+) -> tvm.te.Tensor:
+    """
+    Add two to every element
+    """
+    return scanop(
+        data=data,
+        binop=generic.add,
+        identity_value=0,
+        op_name="addtwo_generic",
+        axis=axis,
+        dtype=dtype,
+        exclusive=exclusive,
+    )

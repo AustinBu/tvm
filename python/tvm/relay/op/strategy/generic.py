@@ -1949,6 +1949,17 @@ def cumsum_strategy(attrs, inputs, out_type, target):
     )
     return strategy
 
+@override_native_generic_func("addtwo_strategy")
+def addtwo_strategy(attrs, inputs, out_type, target):
+    """addtwo generic strategy"""
+    strategy = _op.OpStrategy()
+    strategy.add_implementation(
+        wrap_compute_scanop(topi.addtwo),
+        wrap_topi_schedule(topi.generic.schedule_extern),
+        name="addtwo.generic",
+    )
+    return strategy
+
 
 @override_native_generic_func("concat_strategy")
 def concatenate_strategy(attrs, inputs, out_type, target):

@@ -4442,5 +4442,26 @@ RELAY_REGISTER_OP("fixed_point_multiply_per_axis")
     .set_attrs_type<FixedPointMultiplyPerAxisAttrs>()
     .set_support_level(10);
 
+ // --------------------------------------------------------------------------
+Expr MakeAddTwo(Expr data, Integer axis, DataType dtype, Bool exclusive) {
+  auto attrs = make_object<ScanopAttrs>();
+  attrs->dtype = dtype;
+  attrs->axis = axis;
+  attrs->exclusive = exclusive;
+  static const Op& op = Op::Get("addtwo");
+  return Call(op, {data}, Attrs(attrs), {});
+}
+
+TVM_REGISTER_GLOBAL("relay.op._make.addtwo").set_body_typed(MakeAddTwo);
+
+RELAY_REGISTER_OP("addtwo")
+    .describe(
+        R"doc(Adds 2)doc" TVM_ADD_FILELINE)
+    .set_num_inputs(1)
+    .add_argument("data", "Tensor", "The input tensor.")
+    .set_support_level(3)
+    .add_type_rel("Addtwo", ScanopRel)
+    .set_attr<TOpPattern>("TOpPattern", kOpaque);
+
 }  // namespace relay
 }  // namespace tvm
